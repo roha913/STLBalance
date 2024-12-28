@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STL File Reader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload an STL File</h1>
+    <input type="file" id="fileInput" accept=".stl" />
+    <div class="output" id="output">Random line will appear here.</div>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const contents = e.target.result;
+                    const lines = contents.split('\n').map(line => line.trim());
+                    const randomLine = lines[Math.floor(Math.random() * lines.length)];
+                    document.getElementById('output').textContent = randomLine || "No valid line found.";
+                };
+                reader.readAsText(file);
+            } else {
+                document.getElementById('output').textContent = "No file selected.";
+            }
+        });
+    </script>
+</body>
+</html>
