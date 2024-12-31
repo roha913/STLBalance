@@ -64,7 +64,7 @@ def plot_stuff(COM_x, COM_y, convex_hull, bp):
     ax.scatter(np.array([COM_x]), np.array([COM_y]), marker = "x")
     if(len(bp) > 0):
         ax.scatter(np.array(bp)[:, 0], np.array(bp)[:, 1], marker = "*")
-    ax.axvline(x=COM_x)
+    #ax.axvline(x=COM_x)
     st.pyplot(fig)
     
 uploaded_file = st.file_uploader("Choose a file")
